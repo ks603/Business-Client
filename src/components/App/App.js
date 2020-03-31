@@ -8,6 +8,10 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Businesses from '../Businesses/Businesses'
+import BusinessCreate from '../BusinessCreate/BusinessCreate'
+import BusinessEdit from '../BusinessEdit/BusinessEdit'
+import Business from '../Business/Business'
 
 class App extends Component {
   constructor () {
@@ -42,7 +46,7 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route path='/sign-up' render={() => (
+          <Route path='/sign-up' render={props => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
@@ -53,6 +57,18 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/businesses' render={() => (
+            <Businesses msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/business-create' render={() => (
+            <BusinessCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/businesses:id/edit' render={({ match }) => (
+            <BusinessEdit match={match} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/businesses/:id' render={({ match }) => (
+            <Business match={match} msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
