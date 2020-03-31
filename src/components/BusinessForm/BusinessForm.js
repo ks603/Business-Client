@@ -2,29 +2,31 @@ import React from 'react'
 
 const BusinessForm = ({ business, handleSubmit, handleChange }) => (
   <form onSubmit={handleSubmit}>
-    <label>Title</label>
+    <label>Name</label>
     <input
-      placeholder="aa"
-      name="title"
-      value={business.title || ''}
+      placeholder="Wonderful"
+      name="name"
+      value={business.name || ''}
+      className='form-control'
       onChange={handleChange}
     />
-    <label>Director</label>
+    <label>Review</label>
     <input
-      placeholder="A b"
-      name="director"
-      value={business.director || ''}
+      placeholder="Review"
+      name="review"
+      value={business.review || ''}
+      className='form-control'
       onChange={handleChange}
     />
-    <label>Year Released</label>
+    <label>Status</label>
     <input
-      placeholder="YYYY-MM-DD"
-      name="year"
-      value={business.year || ''}
-      type="date"
+      placeholder="Standng"
+      name="status"
+      value={business.status || ''}
+      className='form-control'
       onChange={handleChange}
     />
-    <button type="submit">Submit</button>
+    <button type='submit' className='btn btn-primary'>Submit</button>
   </form>
 )
 

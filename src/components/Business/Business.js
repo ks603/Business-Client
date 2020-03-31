@@ -59,12 +59,12 @@ class Business extends Component {
       // We have a business, display it!
       businessJSX = (
         <div>
-          <h3>{business.title}</h3>
-          <p>Director: {business.director}</p>
-          <p>Year Released: {business.year}</p>
-          <button onClick={this.delete}>Delete Business</button>
+          <h3>{business.name}</h3>
+          <p>Director: {business.review}</p>
+          <p>Year Released: {business.status}</p>
+          <button onClick={this.delete} className='btn btn-primary'>Delete Business</button>
           <Link to={`/businesses/${this.props.match.params.id}/edit`}>
-            <button>Update Business</button>
+            <button className='btn btn-primary'>Update Business</button>
           </Link>
         </div>
       )

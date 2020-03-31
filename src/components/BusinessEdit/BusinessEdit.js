@@ -14,9 +14,9 @@ class BusinessEdit extends Component {
 
     this.state = {
       business: {
-        title: '',
-        director: '',
-        year: ''
+        name: '',
+        review: '',
+        status: ''
       },
       updated: false
     }

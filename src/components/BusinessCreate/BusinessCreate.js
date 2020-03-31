@@ -15,9 +15,9 @@ class BusinessCreate extends Component {
 
     this.state = {
       business: {
-        title: '',
-        director: '',
-        year: ''
+        name: '',
+        review: '',
+        status: ''
       },
       createdId: null
     }

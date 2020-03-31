@@ -54,7 +54,7 @@ class Businesses extends Component {
       // Otherwise, display the businesses
       const businessesList = businesses.map(business => (
         <li key={business._id}>
-          <Link to={`/businesses/${business._id}`}>{business.title}</Link>
+          <Link to={`/businesses/${business._id}`}>{business.name}</Link>
         </li>
       ))
 
