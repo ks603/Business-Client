@@ -13,6 +13,12 @@ import Businesses from '../Businesses/Businesses'
 import Business from '../Business/Business'
 import BusinessCreate from '../BusinessCreate/BusinessCreate'
 import BusinessEdit from '../BusinessEdit/BusinessEdit'
+import Projects from '../Projects/Projects'
+import Project from '../Project/Project'
+import ProjectCreate from '../ProjectCreate/ProjectCreate'
+import ProjectEdit from '../ProjectEdit/ProjectEdit'
+import ProjectShow from '../ProjectShow/ProjectShow'
+import Home from '../Home/Home'
 
 // We want to have state at the highest level possible in our app
 // So `App` is a class component
@@ -93,6 +99,24 @@ class App extends Component {
           )} />
           <AuthenticatedRoute exact user={user} path='/businesses/:id/edit' render={({ match }) => (
             <BusinessEdit match={match} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <Route exact path='/projects' render={() => (
+            <Projects msgAlert={this.msgAlert} user={user} />
+          )} />
+          <Route exact user={user} path='/projects/:id' render={({ match }) => (
+            <Project match={match} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/project-create' render={() => (
+            <ProjectCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/projects/:id/edit' render={({ match }) => (
+            <ProjectEdit match={match} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <Route exact path='/view' render={() => (
+            <ProjectShow msgAlert={this.msgAlert} user={user} />
+          )} />
+          <Route exact path='/' render={() => (
+            <Home msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

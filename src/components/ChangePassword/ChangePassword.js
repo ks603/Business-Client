@@ -6,6 +6,7 @@ import messages from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import HeroGradient from '../shared/HeroGradient'
 
 class ChangePassword extends Component {
   constructor () {
@@ -49,7 +50,11 @@ class ChangePassword extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Change Password</h3>
+          <HeroGradient
+            message='Change Password'
+            startColor='#f68084'
+            endColor='#a6c0fe'
+          />
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
               <Form.Label>Old password</Form.Label>
