@@ -10,19 +10,19 @@ const BusinessForm = ({ business, handleSubmit, handleChange }) => (
       className='form-control'
       onChange={handleChange}
     />
-    <label>Review</label>
-    <input
-      placeholder="Review"
-      name="review"
-      value={business.review || ''}
-      className='form-control'
-      onChange={handleChange}
-    />
     <label>Status</label>
     <input
       placeholder="Standng"
       name="status"
       value={business.status || ''}
+      className='form-control'
+      onChange={handleChange}
+    />
+    <label>Review</label>
+    <textarea
+      placeholder="Review"
+      name="review"
+      value={business.review || ''}
       className='form-control'
       onChange={handleChange}
     />
