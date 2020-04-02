@@ -41,8 +41,6 @@ Organize Business is an app that can help you organize vendors and projects your
 - MongoDB
 - Mongoose
 - Node.js
-- AWS S3
-- Multer
 - JavaScript
 - Curl Scripts
 - JSX/HTML5
