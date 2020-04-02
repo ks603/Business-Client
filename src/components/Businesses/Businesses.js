@@ -28,7 +28,6 @@ class Businesses extends Component {
       }
     })
       .then(res => {
-        console.log(res)
         this.setState({ businesses: res.data.businesses })
       })
       .catch(err => {

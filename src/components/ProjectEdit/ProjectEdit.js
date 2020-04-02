@@ -35,11 +35,12 @@ class ProjectEdit extends Component {
       .then(res => {
         this.setState({ project: res.data.project })
       })
-      .catch(console.error)
+      .catch()
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert } = this.props
 
     axios({
       method: 'patch',
@@ -52,7 +53,13 @@ class ProjectEdit extends Component {
       .then(() => {
         this.setState({ updated: true })
       })
-      .catch(console.error)
+      .catch(error => {
+        this.setState({ name: '', employees: '', eta: '', item: '' })
+        msgAlert({
+          heading: 'Update failed: ' + error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   handleChange = (event) => {

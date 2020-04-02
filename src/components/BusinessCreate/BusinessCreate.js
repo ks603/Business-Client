@@ -26,6 +26,7 @@ class BusinessCreate extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert } = this.props
 
     axios({
       method: 'post',
@@ -36,10 +37,15 @@ class BusinessCreate extends Component {
       }
     })
       .then(res => {
-        console.log(res.data)
         this.setState({ createdId: res.data.business._id })
       })
-      .catch(console.error)
+      .catch(error => {
+        this.setState({ name: '', employees: '', eta: '', item: '' })
+        msgAlert({
+          heading: 'Create business failed: ' + error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   handleChange = (event) => {

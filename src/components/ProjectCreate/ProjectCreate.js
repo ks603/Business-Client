@@ -27,6 +27,7 @@ class ProjectCreate extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert } = this.props
 
     axios({
       method: 'post',
@@ -37,10 +38,15 @@ class ProjectCreate extends Component {
       }
     })
       .then(res => {
-        console.log(res.data)
         this.setState({ createdId: res.data.project._id })
       })
-      .catch(console.error)
+      .catch(error => {
+        this.setState({ name: '', employees: '', eta: '', item: '' })
+        msgAlert({
+          heading: 'Create Project failed: ' + error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   handleChange = (event) => {

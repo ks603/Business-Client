@@ -28,7 +28,7 @@ class Business extends Component {
       .then(res => {
         this.setState({ business: res.data.business })
       })
-      .catch(console.error)
+      .catch()
   }
 
   delete = (event) => {
@@ -42,7 +42,7 @@ class Business extends Component {
       .then(() => {
         this.setState({ deleted: true })
       })
-      .catch(console.error)
+      .catch()
   }
 
   render () {

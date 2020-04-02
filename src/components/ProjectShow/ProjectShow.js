@@ -25,7 +25,6 @@ class ProjectShow extends Component {
       method: 'get'
     })
       .then(res => {
-        console.log(res)
         this.setState({ projects: res.data.projects })
       })
       .catch(err => {

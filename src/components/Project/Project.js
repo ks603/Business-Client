@@ -25,7 +25,7 @@ class Project extends Component {
       .then(res => {
         this.setState({ project: res.data.project })
       })
-      .catch(console.error)
+      .catch()
   }
 
   delete = (event) => {
@@ -39,7 +39,7 @@ class Project extends Component {
       .then(() => {
         this.setState({ deleted: true })
       })
-      .catch(console.error)
+      .catch()
   }
 
   render () {
@@ -62,8 +62,8 @@ class Project extends Component {
             startColor='#30cfd0'
             endColor='#b490ca'
           />
-          <p>Eployees Assigned: {project.employees}</p>
-          <p>Estimated Completion: {project.eta}</p>
+          <p>Employees sssigned: {project.employees}</p>
+          <p>Estimated completion: {project.eta}</p>
           <p>Items needed: {project.item}</p>
           <button onClick={this.delete} className='btn btn-primary'>Delete Project</button>
           <Link to={`/projects/${this.props.match.params.id}/edit`}>

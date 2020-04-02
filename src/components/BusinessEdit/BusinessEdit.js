@@ -34,11 +34,12 @@ class BusinessEdit extends Component {
       .then(res => {
         this.setState({ business: res.data.business })
       })
-      .catch(console.error)
+      .catch()
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert } = this.props
 
     axios({
       method: 'patch',
@@ -51,7 +52,13 @@ class BusinessEdit extends Component {
       .then(() => {
         this.setState({ updated: true })
       })
-      .catch(console.error)
+      .catch(error => {
+        this.setState({ name: '', status: '', review: '' })
+        msgAlert({
+          heading: 'Update failed: ' + error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   handleChange = (event) => {
