@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import Axios:
 import axios from 'axios'
@@ -59,7 +60,11 @@ class Business extends Component {
       // We have a business, display it!
       businessJSX = (
         <div>
-          <h3>{business.name}</h3>
+          <HeroGradient
+            message={business.name}
+            startColor='#30cfd0'
+            endColor='#b490ca'
+          />
           <p>Status with company: {business.status}</p>
           <p>Review: {business.review}</p>
           <button onClick={this.delete} className='btn btn-primary'>Delete Business</button>

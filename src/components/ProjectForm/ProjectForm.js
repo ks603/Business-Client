@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProjectForm = ({ project, handleSubmit, handleChange }) => (
   <form onSubmit={handleSubmit}>
-    <label>Project Name</label>
+    <label>Project Name:</label>
     <input
       placeholder="Name"
       name="name"
@@ -10,7 +10,7 @@ const ProjectForm = ({ project, handleSubmit, handleChange }) => (
       className='form-control'
       onChange={handleChange}
     />
-    <label>Employees</label>
+    <label>Employees:</label>
     <input
       placeholder="Assigned Employees"
       name="employees"
@@ -18,7 +18,7 @@ const ProjectForm = ({ project, handleSubmit, handleChange }) => (
       className='form-control'
       onChange={handleChange}
     />
-    <label>Estimated Completion</label>
+    <label>Estimated Completion:</label>
     <textarea
       placeholder="How much time will this project take?"
       name="eta"
@@ -26,7 +26,7 @@ const ProjectForm = ({ project, handleSubmit, handleChange }) => (
       className='form-control'
       onChange={handleChange}
     />
-    <label>Items</label>
+    <label>Items:</label>
     <textarea
       placeholder="What items will be needed for this task?"
       name="item"

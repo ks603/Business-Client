@@ -53,12 +53,12 @@ class SignIn extends Component {
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <HeroGradient
             message='Sign In'
-            startColor='#f68084'
-            endColor='#a6c0fe'
+            startColor='#30cfd0'
+            endColor='#b490ca'
           />
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Email Address:</Form.Label>
               <Form.Control
                 required
                 type="email"
@@ -69,7 +69,7 @@ class SignIn extends Component {
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Password:</Form.Label>
               <Form.Control
                 required
                 name="password"

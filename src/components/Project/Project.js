@@ -59,9 +59,8 @@ class Project extends Component {
         <div>
           <HeroGradient
             message={project.name}
-            startColor='rgba(2,0,36,1)'
-            midColor='rgba(121,97,9,1)'
-            endColor='rgba(0,212,255,1)'
+            startColor='#30cfd0'
+            endColor='#b490ca'
           />
           <p>Eployees Assigned: {project.employees}</p>
           <p>Estimated Completion: {project.eta}</p>

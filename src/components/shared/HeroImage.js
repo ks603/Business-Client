@@ -1,6 +1,7 @@
 import React from 'react'
 
 const HeroImage = ({ backgroundImage, message }) => {
+  console.log('backgroundImage is', backgroundImage)
   const heroContainerStyles = {
     // Center content inside container
     display: 'flex',

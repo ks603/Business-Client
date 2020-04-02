@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import axios
 import axios from 'axios'
@@ -15,8 +16,8 @@ class BusinessEdit extends Component {
     this.state = {
       business: {
         name: '',
-        status: '',
-        review: ''
+        review: '',
+        status: ''
       },
       updated: false
     }
@@ -73,7 +74,11 @@ class BusinessEdit extends Component {
     }
     return (
       <div>
-        <h1>Business Edit page</h1>
+        <HeroGradient
+          message='Business Edit Page'
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
         <BusinessForm
           business={business}
           handleSubmit={this.handleSubmit}

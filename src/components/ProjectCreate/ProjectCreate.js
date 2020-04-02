@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import axios
 import axios from 'axios'
@@ -62,7 +63,11 @@ class ProjectCreate extends Component {
     }
     return (
       <Fragment>
-        <h1>Project Create page</h1>
+        <HeroGradient
+          message='Project Create Page'
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
         <ProjectForm
           project={project}
           handleSubmit={this.handleSubmit}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import Axios:
 import axios from 'axios'
@@ -66,8 +67,14 @@ class Businesses extends Component {
     }
     return (
       <React.Fragment>
-        <h1>Businesses Page</h1>
-        {businessJSX}
+        <HeroGradient
+          message='Business'
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
+        <HeroGradient
+          message={businessJSX}
+        />
       </React.Fragment>
     )
   }

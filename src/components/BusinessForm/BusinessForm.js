@@ -2,25 +2,25 @@ import React from 'react'
 
 const BusinessForm = ({ business, handleSubmit, handleChange }) => (
   <form onSubmit={handleSubmit}>
-    <label>Name</label>
+    <label>Name:</label>
     <input
-      placeholder="Wonderful"
+      placeholder="Vendor name"
       name="name"
       value={business.name || ''}
       className='form-control'
       onChange={handleChange}
     />
-    <label>Status</label>
+    <label>Status:</label>
     <input
-      placeholder="Standng"
+      placeholder="In good standing?"
       name="status"
       value={business.status || ''}
       className='form-control'
       onChange={handleChange}
     />
-    <label>Review</label>
+    <label>Review:</label>
     <textarea
-      placeholder="Review"
+      placeholder="Recent Notes"
       name="review"
       value={business.review || ''}
       className='form-control'

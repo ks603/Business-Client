@@ -52,12 +52,12 @@ class ChangePassword extends Component {
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <HeroGradient
             message='Change Password'
-            startColor='#f68084'
-            endColor='#a6c0fe'
+            startColor='#30cfd0'
+            endColor='#b490ca'
           />
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
-              <Form.Label>Old password</Form.Label>
+              <Form.Label>Old Password:</Form.Label>
               <Form.Control
                 required
                 name="oldPassword"
@@ -68,7 +68,7 @@ class ChangePassword extends Component {
               />
             </Form.Group>
             <Form.Group controlId="newPassword">
-              <Form.Label>New Password</Form.Label>
+              <Form.Label>New Password:</Form.Label>
               <Form.Control
                 required
                 name="newPassword"

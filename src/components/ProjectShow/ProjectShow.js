@@ -67,8 +67,8 @@ class ProjectShow extends Component {
       <React.Fragment>
         <HeroGradient
           message='Project Page'
-          startColor='#f68084'
-          endColor='#a6c0fe'
+          startColor='#30cfd0'
+          endColor='#b490ca'
         />
         <HeroGradient
           message={projectJSX}

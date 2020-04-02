@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import axios
 import axios from 'axios'
@@ -74,7 +75,11 @@ class ProjectEdit extends Component {
     }
     return (
       <div>
-        <h1>Project Edit page</h1>
+        <HeroGradient
+          message='Project Edit Page'
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
         <ProjectForm
           project={project}
           handleSubmit={this.handleSubmit}

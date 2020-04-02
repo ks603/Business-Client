@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
+import HeroGradient from '../shared/HeroGradient'
 
 // Import axios
 import axios from 'axios'
@@ -61,7 +62,11 @@ class BusinessCreate extends Component {
     }
     return (
       <Fragment>
-        <h1>Business Create page</h1>
+        <HeroGradient
+          message='Business Create Page'
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
         <BusinessForm
           business={business}
           handleSubmit={this.handleSubmit}
