@@ -1,7 +1,7 @@
 # Business Organizer: Help organize your business!
 
 ## Screenshot
-![](https://i.imgur.com/NLhZKHq.jpg)
+![](https://i.imgur.com/oxtJnUe.png)
 
 ## Setup Steps
 
