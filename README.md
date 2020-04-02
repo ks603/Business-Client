@@ -9,12 +9,14 @@
 2. Run `npm install` to install all dependencies.
 3. Use `npm start` to start the local client on default port 7165.
 
-## Links to relevant repositories and deployed sites:
-* ##### Link to API repository: <https://github.com/ks603/Game-API-client>
+## Links to relevant repositories and deployed sites
+
+* ##### Link to API repository: <https://github.com/ks603/Business-API>
 * ##### Link to deployed client site: <https://ks603.github.io/Business-Client/#/>
 * ##### Link to deployed API site: <https://intense-shore-74676.herokuapp.com/>
 
-## User Stories:
+## User Stories
+
 - As an unregistered user, I would like to sign up with email and password.
 - As a registered user, I would like to sign in with email and password.
 - As a signed in user, I would like to change password.
@@ -25,20 +27,29 @@
 - As a signed in user, I would like to delete a business
 - As a signed in user, I would like to see the following meta-data for any business: name, date added, description of relationship, and if they have a website the link.
 
-## Wireframes:
+## Wireframes
+
 ![](https://i.imgur.com/7z3eQ3B.png)
 
 ## Description
 
 Organize Business is an app that can help you organize vendors and projects your copany are dealing with. Right now there are two resources available one which is businesses you deal with. This lets you keep track of the relationship with vendors on a day to day basis. The other resource is Projects. This lets your company and others see what projects you are currently working on and resources you need to complete the project. The goal of the app is to make organization easier your business.
 
-## Technologies Used
-* React (JavaScript): all front-end displays and actions
-* Axios: all API calls
-* SCSS: styling for React components
-* Git/Github: version control and client site hosting
-* Node.js/npm: necessary dependencies for functionality
-* Markdown: README and user stories
+## Technologies
+- React
+- Express
+- MongoDB
+- Mongoose
+- Node.js
+- AWS S3
+- Multer
+- JavaScript
+- Curl Scripts
+- JSX/HTML5
+- CSS
+- Sass
+- Bootstraps
+- Git
 
 
 ## Timeline
