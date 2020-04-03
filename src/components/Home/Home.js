@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroImage from '../shared/HeroImage'
 
-const birdBackground = 'https://i.imgur.com/NLhZKHq.jpg'
+const birdBackground = 'https://i.imgur.com/oxtJnUe.png?1'
 const Home = () => (
   <HeroImage backgroundImage={birdBackground} message='Business Homepage' />
 )
