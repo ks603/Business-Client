@@ -1,84 +1,95 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
+
+import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 import HeroGradient from '../shared/HeroGradient'
 
-// Import Axios:
-import axios from 'axios'
-// Import apiConfig:
-import apiUrl from '../../apiConfig'
-
-class Business extends Component {
-  constructor () {
-    super()
-
-    this.state = {
-      business: null,
-      deleted: false
-    }
-  }
-
-  componentDidMount () {
+const Business = props => {
+  const [business, setBusiness] = useState(null)
+  const [deleted, setDeleted] = useState(false)
+  // Call this callback once after the first render, this only occurs once
+  // because our dependency array is empty, so our dependencies never change
+  // similar to componentDidMount
+  useEffect(() => {
     axios({
-      url: `${apiUrl}/businesses/${this.props.match.params.id}`,
-      method: 'get',
+      url: `${apiUrl}/businesses/${props.match.params.id}`,
+      method: 'GET',
       headers: {
-        Authorization: `Bearer ${this.props.user.token}`
+        'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => {
-        this.setState({ business: res.data.business })
-      })
+      // Make sure to update this.setState to our hooks setMovie function
+      .then(res => setBusiness(res.data.business))
+      .catch()
+  }, [])
+  useEffect(() => {
+    // This will only run when the compnent will unmount
+    // because the dependency array is empty
+    return () => {
+    }
+  }, [])
+  useEffect(() => {
+    // The cleanup function is called when
+    // 1. the component is about to unmount
+    // 2. before the 2nd and following renders
+    return () => {
+    }
+  })
+  const destroy = () => {
+    axios({
+      url: `${apiUrl}/businesses/${props.match.params.id}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .then(() => props.msgAlert({
+        heading: 'Delete Success',
+        message: messages.deleteSuccess,
+        variant: 'delete'
+      }))
       .catch()
   }
 
-  delete = (event) => {
-    axios({
-      method: 'delete',
-      url: `${apiUrl}/businesses/${this.props.match.params.id}`,
-      headers: {
-        Authorization: `Bearer ${this.props.user.token}`
-      }
-    })
-      .then(() => {
-        this.setState({ deleted: true })
-      })
-      .catch()
+  if (!business) {
+    return <p>Loading test...</p>
   }
-
-  render () {
-    // Destructure from state:
-    const { business, deleted } = this.state
-    let businessJSX
-
-    // 3 states:
-    // If business is `null`, we are loading
-    if (!business) {
-      businessJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
-    } else if (deleted) {
-      businessJSX = <Redirect to="/businesses"/>
-    } else {
-      // We have a business, display it!
-      businessJSX = (
-        <div>
-          <HeroGradient
-            message={business.name}
-            startColor='#30cfd0'
-            endColor='#b490ca'
-          />
-          <p>Status with company: {business.status}</p>
-          <p>Review: {business.review}</p>
-          <button onClick={this.delete} className='btn btn-primary'>Delete Business</button>
-          <Link to={`/businesses/${this.props.match.params.id}/edit`}>
-            <button className='btn btn-primary'> Update Business</button>
-          </Link>
-        </div>
-      )
-    }
-
+  if (deleted) {
+    return <Redirect to={
+      { pathname: '/businesses' }
+    }/>
+  }
+  if (business.owner === props.user._id) {
     return (
-      businessJSX
+      <div>
+        <HeroGradient
+          message={business.name}
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
+        <p>Status with company: {business.status}</p>
+        <p>Review: {business.review}</p>
+        <button onClick={destroy} className='btn btn-primary'>Delete Business</button>
+        <Link to={`/businesses/${props.match.params.id}/edit`}>
+          <button className='btn btn-primary'> Update Business</button>
+        </Link>
+      </div>
     )
   }
+  return (
+    <div>
+      <HeroGradient
+        message={business.name}
+        startColor='#30cfd0'
+        endColor='#b490ca'
+      />
+      <p>Status with business: {business.status}</p>
+      <p>Review: {business.review}</p>
+    </div>
+  )
 }
 
 export default Business

@@ -1,82 +1,97 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
+
+import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 import HeroGradient from '../shared/HeroGradient'
 
-// Import Axios:
-import axios from 'axios'
-// Import apiConfig:
-import apiUrl from '../../apiConfig'
-
-class Project extends Component {
-  constructor () {
-    super()
-
-    this.state = {
-      project: null,
-      deleted: false
-    }
-  }
-
-  componentDidMount () {
+const Project = props => {
+  const [project, setProject] = useState(null)
+  const [deleted, setDeleted] = useState(false)
+  // Call this callback once after the first render, this only occurs once
+  // because our dependency array is empty, so our dependencies never change
+  // similar to componentDidMount
+  useEffect(() => {
     axios({
-      url: `${apiUrl}/projects/${this.props.match.params.id}`,
-      method: 'get'
-    })
-      .then(res => {
-        this.setState({ project: res.data.project })
-      })
-      .catch()
-  }
-
-  delete = (event) => {
-    axios({
-      method: 'delete',
-      url: `${apiUrl}/projects/${this.props.match.params.id}`,
+      url: `${apiUrl}/projects/${props.match.params.id}`,
+      method: 'GET',
       headers: {
-        Authorization: `Bearer ${this.props.user.token}`
+        'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(() => {
-        this.setState({ deleted: true })
-      })
+      // Make sure to update this.setState to our hooks setMovie function
+      .then(res => setProject(res.data.project))
+      .catch()
+  }, [])
+  useEffect(() => {
+    // This will only run when the compnent will unmount
+    // because the dependency array is empty
+    return () => {
+    }
+  }, [])
+  useEffect(() => {
+    // The cleanup function is called when
+    // 1. the component is about to unmount
+    // 2. before the 2nd and following renders
+    return () => {
+    }
+  })
+  const destroy = () => {
+    axios({
+      url: `${apiUrl}/projects/${props.match.params.id}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .then(() => props.msgAlert({
+        heading: 'Delete Success',
+        message: messages.deleteSuccess,
+        variant: 'delete'
+      }))
       .catch()
   }
 
-  render () {
-    // Destructure from state:
-    const { project, deleted } = this.state
-    let projectJSX
-
-    // 3 states:
-    // If project is `null`, we are loading
-    if (!project) {
-      projectJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
-    } else if (deleted) {
-      projectJSX = <Redirect to="/projects"/>
-    } else {
-      // We have a project, display it!
-      projectJSX = (
-        <div>
-          <HeroGradient
-            message={project.name}
-            startColor='#30cfd0'
-            endColor='#b490ca'
-          />
-          <p>Employees sssigned: {project.employees}</p>
-          <p>Estimated completion: {project.eta}</p>
-          <p>Items needed: {project.item}</p>
-          <button onClick={this.delete} className='btn btn-primary'>Delete Project</button>
-          <Link to={`/projects/${this.props.match.params.id}/edit`}>
-            <button className='btn btn-primary'> Update Project</button>
-          </Link>
-        </div>
-      )
-    }
-
+  if (!project) {
+    return <p>Loading test...</p>
+  }
+  if (deleted) {
+    return <Redirect to={
+      { pathname: '/projects' }
+    }/>
+  }
+  if (project.owner === props.user._id) {
     return (
-      projectJSX
+      <div>
+        <HeroGradient
+          message={project.name}
+          startColor='#30cfd0'
+          endColor='#b490ca'
+        />
+        <p>Employees assigned: {project.employees}</p>
+        <p>Estimated completion: {project.eta}</p>
+        <p>Items needed: {project.item}</p>
+        <button onClick={destroy} className='btn btn-primary'>Delete Project</button>
+        <Link to={`/projects/${props.match.params.id}/edit`}>
+          <button className='btn btn-primary'> Update Project</button>
+        </Link>
+      </div>
     )
   }
+  return (
+    <div>
+      <HeroGradient
+        message={project.name}
+        startColor='#30cfd0'
+        endColor='#b490ca'
+      />
+      <p>Employees assigned: {project.employees}</p>
+      <p>Estimated completion: {project.eta}</p>
+      <p>Items needed: {project.item}</p>
+    </div>
+  )
 }
 
 export default Project
